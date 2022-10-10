@@ -19,16 +19,16 @@ use crate::{
 use reqwest::header::LOCATION;
 use types::HelloResponse;
 
-const OAUTH_CLIENT_ID: &str = std::env!("OAUTH_CLIENT_ID");
-const OAUTH_AUTH_URL: &str = std::env!("OAUTH_AUTH_URL");
-const OAUTH_TOKEN_URL: &str = std::env!("OAUTH_TOKEN_URL");
-const OAUTH_SECRET: &str = std::env!("OAUTH_CLIENT_SECRET");
-const OAUTH_REDIRECT_URL: &str = std::env!("OAUTH_REDIRECT_URL");
+const OAUTH_CLIENT_ID: &str = ""; //std::env!("OAUTH_CLIENT_ID")
+const OAUTH_AUTH_URL: &str = ""; //std::env!("OAUTH_AUTH_URL")
+const OAUTH_TOKEN_URL: &str = ""; //std::env!("OAUTH_TOKEN_URL")
+const OAUTH_SECRET: &str = ""; //std::env!("OAUTH_CLIENT_SECRET")
+const OAUTH_REDIRECT_URL: &str = ""; //std::env!("OAUTH_REDIRECT_URL")
 const SCOPE: &str = "email%20profile%20openid";
-const ACTIX_PORT: &str = std::env!("ACTIX_PORT");
-const UI_PORT: &str = std::env!("TRUNK_SERVE_PORT");
-const UI_HOST: &str = std::env!("TRUNK_SERVE_HOST");
-const AFTER_LOGIN_URL: &'static str = concat!("http://localhost:", std::env!("TRUNK_SERVE_PORT"));
+const ACTIX_PORT: &str = "8081"; //std::env!("ACTIX_PORT")
+const UI_HOST: &str = "localhost"; //std::env!("TRUNK_SERVE_HOST")
+const UI_PORT: &str = "3000"; //std::env!("TRUNK_SERVE_PORT")
+const AFTER_LOGIN_URL: &'static str = "http://localhost:3000"; //concat!("http://localhost:", std::env!("TRUNK_SERVE_PORT"))
 
 pub mod auth;
 pub mod db;

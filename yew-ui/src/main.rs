@@ -12,8 +12,8 @@ use web_sys::HtmlDocument;
 use yew_router::prelude::*;
 
 // This is read at compile time, please restart if you change this value.
-const ACTIX_PORT: &str = std::env!("ACTIX_PORT");
-const LOGIN_URL: &str = std::env!("LOGIN_URL");
+const ACTIX_PORT: &str = "8081"; //std::env!("ACTIX_PORT")
+const LOGIN_URL: &str = ""; //std::env!("LOGIN_URL")
 
 fn truthy(s: String) -> bool {
     ["true".to_string(), "1".to_string()].contains(&s.to_lowercase())
@@ -22,7 +22,7 @@ fn truthy(s: String) -> bool {
 // We need a lazy static block because these vars need to call a
 // few functions.
 lazy_static! {
-    static ref ENABLE_OAUTH: bool = truthy(std::env!("ENABLE_OAUTH").to_string());
+    static ref ENABLE_OAUTH: bool = truthy("what?".to_string());//std::env!("ENABLE_OAUTH")
 }
 
 #[derive(Clone, Routable, PartialEq)]

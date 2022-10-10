@@ -1,48 +1,48 @@
 version: '3.8'
 
 services:
-  yew-ui:
-    container_name: security_union_yew_container
-    image: security_union_yew
-    volumes:
-      - type: bind
-        source: ../
-        target: /app
-    # build:
-    #   dockerfile: ../docker/Dockerfile.yew
-    command: bash -c "cd app/yew-ui && trunk serve --address 0.0.0.0 --port ${TRUNK_SERVE_PORT}"
-    environment:
-      - ACTIX_PORT=${ACTIX_PORT}
-      - TRUNK_SERVE_PORT=${TRUNK_SERVE_PORT}
-      - ENABLE_OAUTH=true
-      - LOGIN_URL=http://localhost:${ACTIX_PORT}/login
-    ports:
-      - "${TRUNK_SERVE_PORT}:${TRUNK_SERVE_PORT}"
-  actix-api:
-    container_name: security_union_actix_container
-    image: security_union_actix
-    # build:
-    #   dockerfile: ../docker/Dockerfile.actix
-    command: bash -c "cd app/actix-api && cargo watch -x \"run\""
-    environment:
-      - ACTIX_PORT=${ACTIX_PORT}
-      - TRUNK_SERVE_PORT=${TRUNK_SERVE_PORT}
-      - TRUNK_SERVE_HOST=localhost
-      - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
-      - OAUTH_AUTH_URL=${OAUTH_AUTH_URL}
-      - OAUTH_TOKEN_URL=${OAUTH_TOKEN_URL}
-      - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
-      - OAUTH_REDIRECT_URL=http://localhost:${ACTIX_PORT}/login/callback
-      - RUST_LOG=info
-      - PG_URL=postgres://postgres:docker@postgres:5432/actix-api-db?sslmode=disable
-    ports:
-      - "${ACTIX_PORT}:${ACTIX_PORT}"
-    volumes:
-      - type: bind
-        source: ../
-        target: /app
-    depends_on:
-      - postgres
+  # yew-ui:
+  #   container_name: security_union_yew_container
+  #   image: security_union_yew
+  #   volumes:
+  #     - type: bind
+  #       source: ../
+  #       target: /app
+  #   # build:
+  #   #   dockerfile: ../docker/Dockerfile.yew
+  #   command: bash -c "cd app/yew-ui && trunk serve --address 0.0.0.0 --port ${TRUNK_SERVE_PORT}"
+  #   environment:
+  #     - ACTIX_PORT=${ACTIX_PORT}
+  #     - TRUNK_SERVE_PORT=${TRUNK_SERVE_PORT}
+  #     - ENABLE_OAUTH=true
+  #     - LOGIN_URL=http://localhost:${ACTIX_PORT}/login
+  #   ports:
+  #     - "${TRUNK_SERVE_PORT}:${TRUNK_SERVE_PORT}"
+  # actix-api:
+  #   container_name: security_union_actix_container
+  #   image: security_union_actix
+  #   # build:
+  #   #   dockerfile: ../docker/Dockerfile.actix
+  #   command: bash -c "cd app/actix-api && cargo watch -x \"run\""
+  #   environment:
+  #     - ACTIX_PORT=${ACTIX_PORT}
+  #     - TRUNK_SERVE_PORT=${TRUNK_SERVE_PORT}
+  #     - TRUNK_SERVE_HOST=localhost
+  #     - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+  #     - OAUTH_AUTH_URL=${OAUTH_AUTH_URL}
+  #     - OAUTH_TOKEN_URL=${OAUTH_TOKEN_URL}
+  #     - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
+  #     - OAUTH_REDIRECT_URL=http://localhost:${ACTIX_PORT}/login/callback
+  #     - RUST_LOG=info
+  #     - PG_URL=postgres://postgres:docker@postgres:5432/actix-api-db?sslmode=disable
+  #   ports:
+  #     - "${ACTIX_PORT}:${ACTIX_PORT}"
+  #   volumes:
+  #     - type: bind
+  #       source: ../
+  #       target: /app
+  #   depends_on:
+  #     - postgres
   dbmate:
     container_name: security_union_dbmate_container
     image: dbmate
